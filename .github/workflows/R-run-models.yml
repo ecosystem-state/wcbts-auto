@@ -43,7 +43,7 @@ jobs:
         run:
           Rscript -e "remotes::install_github('pbs-assess/sdmTMB')"
 
-      - name: Create spp list
+      - name: Run SDMs
         run:
           Rscript -e "source('code/02_calculate_cog.R')"
 

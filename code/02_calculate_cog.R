@@ -82,7 +82,7 @@ for (i in 1:length(spp)) {
   if (class(fit) == "sdmTMB") {
     # do predictions for coastwide-COG
     predictions <- predict(fit, newdata = pred_grid, return_tmb_object = TRUE)
-    coastwide_index <- get_index(predictions, bias_correct = FALSE)
+    coastwide_index <- get_index(predictions, bias_correct = TRUE)
     coastwide_index$region <- "Coastwide"
     coastwide_cog <- get_cog(predictions, bias_correct = FALSE)
     coastwide_cog$region <- "Coastwide"
@@ -104,11 +104,10 @@ for (i in 1:length(spp)) {
       )
     quantile_df$common_names <- spp[i]
 
-
     # do predictions for north-COG north of Cape Mendocino
     # Cape Mendocino @ 40.440100, -124.409500
     predictions <- predict(fit, newdata = dplyr::filter(pred_grid, latitude > 4477559.74 / 1000), return_tmb_object = TRUE)
-    north_index <- get_index(predictions, bias_correct = FALSE)
+    north_index <- get_index(predictions, bias_correct = TRUE)
     north_index$region <- "North"
     north_cog <- get_cog(predictions, bias_correct = FALSE)
     north_cog$region <- "North"
@@ -116,7 +115,7 @@ for (i in 1:length(spp)) {
     # do predictions for central-COG south of Cape Mendocino and north of Pt Conception
     # 34.4486, -120.4716
     predictions <- predict(fit, newdata = dplyr::filter(pred_grid, latitude > 3814797.98 / 1000, latitude < 4477559.74 / 1000), return_tmb_object = TRUE)
-    central_index <- get_index(predictions, bias_correct = FALSE)
+    central_index <- get_index(predictions, bias_correct = TRUE)
     central_index$region <- "Central"
     central_cog <- get_cog(predictions, bias_correct = FALSE)
     central_cog$region <- "Central"
@@ -124,7 +123,7 @@ for (i in 1:length(spp)) {
     # do predictions for central-COG south of Cape Mendocino and north of Pt Conception
     # 34.4486, -120.4716
     predictions <- predict(fit, newdata = dplyr::filter(pred_grid, latitude < 3814797.98 / 1000), return_tmb_object = TRUE)
-    south_index <- get_index(predictions, bias_correct = FALSE)
+    south_index <- get_index(predictions, bias_correct = TRUE)
     south_index$region <- "South"
     south_cog <- get_cog(predictions, bias_correct = FALSE)
     south_cog$region <- "South"
