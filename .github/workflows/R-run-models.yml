@@ -12,10 +12,10 @@ on:
   #pull_request:
     #branches: [main, master]
 
-name: R-pull-data
+name: R-run-models
 
 jobs:
-  pull-data:
+  run-models:
     runs-on: macos-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
