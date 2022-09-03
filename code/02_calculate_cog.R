@@ -38,6 +38,12 @@ haul$latitude <- haul$latitude / 1000 # to kms
 # Join data
 dat <- dplyr::left_join(catch, haul)
 
+# filter out problematic spp
+dat <- dplyr::filter(dat, common_name %in% c("rock sole unident.", "sand sole", "pacific flatnose",
+                                             "starry rockfish", "speckled rockfish", "olive rockfish",
+                                             "kelp greenling", "honeycomb rockfish", "cabezon",
+                                             "california scorpionfish") == FALSE)
+
 # Get prediction grid
 grid <- readRDS("data/wc_grid.rds")
 grid <- dplyr::rename(grid, longitude = X, latitude = Y) %>%
@@ -57,8 +63,8 @@ pred_grid$fyear <- as.factor(pred_grid$year)
 
 spp <- unique(dat$common_name)
 
-#for (i in 1:length(spp)) {
-for (i in 1:10) {
+for (i in 1:length(spp)) {
+#for (i in 1:floor(length(spp)/2)) {
   sub <- dplyr::filter(dat, common_name == spp[i])
   if (i == 1) {
     # this is equivalent to about 375 knots
