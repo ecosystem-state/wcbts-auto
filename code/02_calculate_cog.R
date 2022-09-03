@@ -143,8 +143,10 @@ for (i in 1:length(spp)) {
       all_quantile <- rbind(all_quantile, quantile_df)
     }
   }
+
+  saveRDS(all_cog, "output/all_cog.rds")
+  saveRDS(all_index, "output/all_index.rds")
+  saveRDS(all_quantile, "output/all_quantile.rds")
 }
 
-saveRDS(all_cog, "output/all_cog.rds")
-saveRDS(all_index, "output/all_index.rds")
-saveRDS(all_quantile, "output/all_quantile.rds")
+
