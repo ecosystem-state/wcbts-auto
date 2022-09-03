@@ -57,7 +57,8 @@ pred_grid$fyear <- as.factor(pred_grid$year)
 
 spp <- unique(dat$common_name)
 
-for (i in 1:length(spp)) {
+#for (i in 1:length(spp)) {
+for (i in 1:10) {
   sub <- dplyr::filter(dat, common_name == spp[i])
   if (i == 1) {
     # this is equivalent to about 375 knots
