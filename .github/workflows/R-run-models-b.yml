@@ -12,7 +12,7 @@ on:
   #pull_request:
     #branches: [main, master]
 
-name: R-run-models
+name: R-run-models2
 
 jobs:
   run-models:
@@ -42,6 +42,10 @@ jobs:
       - name: Install sdmTMB
         run:
           Rscript -e "remotes::install_github('pbs-assess/sdmTMB')"
+
+      - name: Set run number
+        run:
+          Rscript -e "run_num <- 2"
 
       - name: Run SDMs
         run:

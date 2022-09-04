@@ -63,9 +63,13 @@ pred_grid$fyear <- as.factor(pred_grid$year)
 
 spp <- unique(dat$common_name)
 
-for (i in 1:length(spp)) {
+# divide spp into thirds for GH actions
+sp <- rep(1:3, length(spp))[1:length(spp)]
+indx <- which(sp == run_num)
+
+for (i in 1:length(indx)) {
 #for (i in 1:floor(length(spp)/2)) {
-  sub <- dplyr::filter(dat, common_name == spp[i])
+  sub <- dplyr::filter(dat, common_name == spp[indx[i]])
   if (i == 1) {
     # this is equivalent to about 375 knots
     mesh <- sdmTMB::make_mesh(sub,
@@ -109,7 +113,7 @@ for (i in 1:length(spp)) {
         q_95 = quantile(latitude, 0.95),
         q_99 = quantile(latitude, 0.99)
       )
-    quantile_df$common_names <- spp[i]
+    quantile_df$common_names <- spp[indx[i]]
 
     # do predictions for north-COG north of Cape Mendocino
     # Cape Mendocino @ 40.440100, -124.409500
@@ -137,8 +141,8 @@ for (i in 1:length(spp)) {
 
     spp_cog <- rbind(coastwide_cog, north_cog, central_cog, south_cog)
     spp_index <- rbind(coastwide_index, north_index, central_index, south_index)
-    spp_cog$species <- spp[i]
-    spp_index$species <- spp[i]
+    spp_cog$species <- spp[indx[i]]
+    spp_index$species <- spp[indx[i]]
 
     if (i == 1) {
       all_cog <- spp_cog
@@ -151,9 +155,9 @@ for (i in 1:length(spp)) {
     }
   }
 
-  saveRDS(all_cog, "output/all_cog.rds")
-  saveRDS(all_index, "output/all_index.rds")
-  saveRDS(all_quantile, "output/all_quantile.rds")
+  saveRDS(all_cog, paste0("output/all_cog_",run_num,".rds"))
+  saveRDS(all_index, paste0("output/all_index_",run_num,".rds"))
+  saveRDS(all_quantile, paste0("output/all_quantile_",run_num,".rds"))
 }
 
 
