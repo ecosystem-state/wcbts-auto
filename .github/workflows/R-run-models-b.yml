@@ -45,7 +45,7 @@ jobs:
 
       - name: Set run number
         run:
-          Rscript -e "run_num <- 2"
+          Rscript -e "source('code/00_run-b.R')"
 
       - name: Run SDMs
         run:
