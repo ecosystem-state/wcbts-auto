@@ -155,9 +155,9 @@ for (i in 1:length(indx)) {
     }
   }
 
-  saveRDS(all_cog, paste0("output/all_cog_",run_num,".rds"))
-  saveRDS(all_index, paste0("output/all_index_",run_num,".rds"))
-  saveRDS(all_quantile, paste0("output/all_quantile_",run_num,".rds"))
 }
 
+saveRDS(all_cog, paste0("output/all_cog_",run_num,".rds"))
+saveRDS(all_index, paste0("output/all_index_",run_num,".rds"))
+saveRDS(all_quantile, paste0("output/all_quantile_",run_num,".rds"))
 
