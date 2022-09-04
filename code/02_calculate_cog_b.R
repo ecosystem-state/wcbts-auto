@@ -2,6 +2,8 @@ library(dplyr)
 library(sf)
 library(sdmTMB)
 
+run_num <- 2
+
 haul <- readRDS("data/wcbts_haul.rds")
 catch <- readRDS("data/wcbts_catch.rds")
 

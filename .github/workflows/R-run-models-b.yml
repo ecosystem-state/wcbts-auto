@@ -43,13 +43,9 @@ jobs:
         run:
           Rscript -e "remotes::install_github('pbs-assess/sdmTMB')"
 
-      - name: Set run number
-        run:
-          Rscript -e "source('code/00_run-b.R')"
-
       - name: Run SDMs
         run:
-          Rscript -e "source('code/02_calculate_cog.R')"
+          Rscript -e "source('code/02_calculate_cog_b.R')"
 
       - name: Commit results
         run: |
