@@ -69,8 +69,7 @@ spp <- unique(dat$common_name)
 sp <- rep(1:3, length(spp))[1:length(spp)]
 indx <- which(sp == run_num)
 
-#for (i in 1:length(indx)) {
-for(i in 1:1) {
+for (i in 1:length(indx)) {
   sub <- dplyr::filter(dat, common_name == spp[indx[i]])
   if (i == 1) {
     # this is equivalent to about 375 knots
@@ -146,7 +145,7 @@ for(i in 1:1) {
     spp_cog$species <- spp[indx[i]]
     spp_index$species <- spp[indx[i]]
 
-    if (i == 1) {
+    if (!exists("all_cog")) {
       all_cog <- spp_cog
       all_index <- spp_index
       all_quantile <- quantile_df

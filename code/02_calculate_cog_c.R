@@ -146,7 +146,7 @@ for (i in 1:length(indx)) {
     spp_cog$species <- spp[indx[i]]
     spp_index$species <- spp[indx[i]]
 
-    if (i == 1) {
+    if (!exists("all_cog")) {
       all_cog <- spp_cog
       all_index <- spp_index
       all_quantile <- quantile_df
