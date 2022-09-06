@@ -6,7 +6,7 @@ on:
     - cron:  '0 0 2 1,4,7,10 *'
   push:
        paths:
-       - 'code/02_calculate_cog.R'
+       - 'code/02_calculate_cog_b.R'
 
     #branches: [main, master]
   #pull_request:
