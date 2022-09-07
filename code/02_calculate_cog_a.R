@@ -70,6 +70,7 @@ sp <- rep(1:3, length(spp))[1:length(spp)]
 indx <- which(sp == run_num)
 
 for (i in 1:length(indx)) {
+
   sub <- dplyr::filter(dat, common_name == spp[indx[i]])
   if (i == 1) {
     # this is equivalent to about 375 knots
