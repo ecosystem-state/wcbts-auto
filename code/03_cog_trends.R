@@ -8,6 +8,8 @@ d_2 <- readRDS("output/all_cog_2.rds")
 d_3 <- readRDS("output/all_cog_3.rds")
 d <- rbind(d_1, d_2, d_3)
 
+saveRDS(d, "output/all_cog.rds")
+
 d <- d %>%
   dplyr::filter(coord == "Y") %>% # only include latitude
   dplyr::filter(!is.na(se)) %>% # model didn't converge

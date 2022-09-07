@@ -8,6 +8,8 @@ d_2 <- readRDS("output/all_quantile_2.rds")
 d_3 <- readRDS("output/all_quantile_3.rds")
 d <- rbind(d_1, d_2, d_3)
 
+saveRDS(d, "output/all_quantile.rds")
+
 d <- tidyr::pivot_longer(d, cols = 2:9)
 d <- dplyr::rename(d, metric = name, species = common_names) %>%
   dplyr::filter(species %in% c("rock sole unident.", "sand sole", "pacific flatnose", "starry rockfish", "speckled rockfish", "olive rockfish", "kelp greenling", "honeycomb rockfish", "cabezon", "california scorpionfish") == FALSE)
