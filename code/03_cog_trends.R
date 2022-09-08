@@ -3,11 +3,18 @@ library(dplyr)
 library(tidyr)
 library(purrr)
 
+# bind indices dataframes together
+d_1 <- readRDS("output/all_index_1.rds")
+d_2 <- readRDS("output/all_index_2.rds")
+d_3 <- readRDS("output/all_index_3.rds")
+d <- rbind(d_1, d_2, d_3)
+saveRDS(d, "output/all_index.rds")
+
+# bind cog dataframes together
 d_1 <- readRDS("output/all_cog_1.rds")
 d_2 <- readRDS("output/all_cog_2.rds")
 d_3 <- readRDS("output/all_cog_3.rds")
 d <- rbind(d_1, d_2, d_3)
-
 saveRDS(d, "output/all_cog.rds")
 
 d <- d %>%
