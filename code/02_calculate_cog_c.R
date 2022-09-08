@@ -71,7 +71,6 @@ indx <- which(sp == run_num)
 
 for (i in 1:length(indx)) {
 
-#for (i in 1:floor(length(spp)/2)) {
   sub <- dplyr::filter(dat, common_name == spp[indx[i]])
   if (i == 1) {
     # this is equivalent to about 375 knots
@@ -85,8 +84,10 @@ for (i in 1:length(indx)) {
   sub$present <- ifelse(sub$cpue_kg_km2 > 0, 1, 0)
   sub$log_depth <- log(sub$depth_m)
 
-  fit <- try(sdmTMB(cpue_kg_km2 ~ -1 + fyear + s(log_depth),
-    spatiotemporal = "iid",
+  formula = cpue_kg_km2 ~ -1 + fyear + s(log_depth)
+  if(spp[indx[i]] == "lingcod") formula = cpue_kg_km2 ~ -1 + fyear + log_depth + I(log_depth^2)
+  fit <- try(sdmTMB(formula = formula,
+    spatiotemporal = "off",
     time = "year",
     family = tweedie(),
     mesh = mesh,
